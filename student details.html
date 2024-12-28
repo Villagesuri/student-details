@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Details Form</title>
+    <style>
+        /* General styles */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+
+        /* Form container */
+        .form-container {
+            width: 80%;
+            max-width: 600px;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: #fff;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+        }
+
+        /* Form heading */
+        h2 {
+            text-align: center;
+            color: #333;
+        }
+
+        /* Form group */
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        input[type="text"],
+        input[type="number"],
+        input[type="email"],
+        select {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        button {
+            width: 100%;
+            padding: 10px;
+            background-color: #28a745;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        button:hover {
+            background-color: #218838;
+        }
+
+        /* Output section */
+        .output {
+            display: none;
+            margin-top: 30px;
+            padding: 20px;
+            background-color: #f8f9fa;
+            border-radius: 5px;
+        }
+
+        .output h3 {
+            text-align: center;
+            color: #333;
+        }
+
+        .output p {
+            font-size: 16px;
+            color: #555;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="form-container">
+        <h2>Enter Student Details</h2>
+        
+        <form id="studentForm">
+            <div class="form-group">
+                <label for="studentName">Full Name:</label>
+                <input type="text" id="studentName" name="studentName" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="studentAge">Age:</label>
+                <input type="number" id="studentAge" name="studentAge" required min="18" max="100">
+            </div>
+
+            <div class="form-group">
+                <label for="studentGender">Gender:</label>
+                <select id="studentGender" name="studentGender" required>
+                    <option value="" disabled selected>Select Gender</option>
+                    <option value="Male">Male</option>
+                    <option value="Female">Female</option>
+                    <option value="Other">Other</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="studentEmail">Email:</label>
+                <input type="email" id="studentEmail" name="studentEmail" required>
+            </div>
+
+            <div class="form-group">
+                <label for="studentCourse">Course:</label>
+                <input type="text" id="studentCourse" name="studentCourse" required>
+            </div>
+
+            <div class="form-group">
+                <button type="submit">Submit</button>
+            </div>
+        </form>
+
+        <div id="output" class="output">
+            <h3>Student Details</h3>
+            <p id="outputName"></p>
+            <p id="outputAge"></p>
+            <p id="outputGender"></p>
+            <p id="outputEmail"></p>
+            <p id="outputCourse"></p>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('studentForm').addEventListener('submit', function(event) {
+            event.preventDefault();  // Prevent form submission
+
+            // Get the values from the form
+            const studentName = document.getElementById('studentName').value;
+            const studentAge = document.getElementById('studentAge').value;
+            const studentGender = document.getElementById('studentGender').value;
+            const studentEmail = document.getElementById('studentEmail').value;
+            const studentCourse = document.getElementById('studentCourse').value;
+
+            // Validate the form fields (simple validation)
+            if (studentName && studentAge && studentGender && studentEmail && studentCourse) {
+                // Show the output section
+                document.getElementById('output').style.display = 'block';
+
+                // Display the submitted data
+                document.getElementById('outputName').textContent = `Full Name: ${studentName}`;
+                document.getElementById('outputAge').textContent = `Age: ${studentAge}`;
+                document.getElementById('outputGender').textContent = `Gender: ${studentGender}`;
+                document.getElementById('outputEmail').textContent = `Email: ${studentEmail}`;
+                document.getElementById('outputCourse').textContent = `Course: ${studentCourse}`;
+            } else {
+                alert('Please fill in all fields.');
+            }
+        });
+    </script>
+
+</body>
+</html>
